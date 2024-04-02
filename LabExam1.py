@@ -96,7 +96,28 @@ def rent_game():
 def return_game():
     pass
 def top_up():
-    pass
+    print("Welcome to Top-Up Area!")
+    while True:
+        try:
+            username = input("Enter your username")
+            if not username:
+                return top_up()
+            password = input("Enter your password")
+            if not password:
+                return top_up()
+            
+            if username in user_account and user_account[username]["password"] == password:
+                top_up_amount = int(input("Enter the amount you want to top up"))
+                if top_up_amount > 0:
+                    user_account[username]["balance"] += top_up_amount
+                    print(f"You have Successfully topped up ${top_up_amount}. Your new balance is ${user_account[username]["balance"]}")
+                    return sign_in_options
+                else:
+                    print("Invalid input. Please enter a valid amount")
+            else:
+                print("Invalid input. Please enter your username")
+        except ValueError as e:
+            print(e)
 def check_inventory():
     pass
 def redeem_game():
